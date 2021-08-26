@@ -11,5 +11,13 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 	<flow name="git-testFlow" doc:id="a87bee0e-9011-4931-84d3-c0db4ddf6d9f" >
 		<http:listener doc:name="Listener" doc:id="f6a3a2aa-9b1f-407a-bd47-98a314d8b889" config-ref="HTTP_Listener_config" path="/test"/>
 		<logger level="INFO" doc:name="Logger" doc:id="467b5a79-b213-48fa-b016-ce050961e051" message="Payload #[payload]"/>
+		<ee:transform doc:name="Transform Message" doc:id="89167e26-1a7b-4617-8f62-2d8b1442f1da" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+"Hello world"]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
 	</flow>
 </mule>
